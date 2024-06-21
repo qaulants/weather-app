@@ -1,13 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { BASE_URL, API_KEY } from './src/constant';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import WeatherSearch from './src/components/weatherSearch'
 import WeatherInfo from './src/components/weatherInfo'
 
-
 const App = () => {
   const searchWeather = (location) => {
-    console.log(location)
+    axios
+      .get(`${BASE_URL}?q=${location}&appid=${API_KEY}`)
+      .then((response) => {
+        const data = response.data
+        console.log(data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
